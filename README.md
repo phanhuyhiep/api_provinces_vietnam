@@ -33,8 +33,8 @@ Truy cập docs: [http://localhost:8000/docs](http://localhost:8000/docs)
 ### Bằng Docker
 
 ```bash
-docker build -t vietnam-admin-api .
-docker run -p 8000:8000 vietnam-admin-api
+docker build -t api_provinces_vietnam
+docker run -p 8000:8000 api_provinces_vietnam
 ```
 
 ## 📚 Các API có sẵn
@@ -110,6 +110,6 @@ GET /api/search/full-address?q={từ_khóa}
 - Dữ liệu được lấy từ repo: [https://github.com/sunrise1002/hanhchinhVN](https://github.com/sunrise1002/hanhchinhVN)
 - Các mã `code` dùng để phân cấp: mã tỉnh → mã huyện → mã xã
 
-## 📄 License
+## 📄 Giấy phép
 
 MIT – Dùng thoải mái vì mục đích học tập, nghiên cứu hoặc tích hợp nội bộ.
