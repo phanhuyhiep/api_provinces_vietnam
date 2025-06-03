@@ -2,7 +2,7 @@
 
 API đơn giản để tra cứu đơn vị hành chính Việt Nam (Tỉnh/Thành phố, Quận/Huyện, Xã/Phường) được xây dựng bằng FastAPI
 
-Url test: [ https://api-provinces-vietnam-latest.onrender.com]( https://api-provinces-vietnam-latest.onrender.com)
+Url test: [ https://api-provinces-vietnam-latest.onrender.com/docs]( https://api-provinces-vietnam-latest.onrender.com/docs)
 
 ## 📁 Cấu trúc thư mục
 
@@ -10,7 +10,14 @@ Url test: [ https://api-provinces-vietnam-latest.onrender.com]( https://api-prov
 .
 ├── main.py
 ├── requirements.txt
+├── README.md
 ├── Dockerfile
+├── docker-compose.yml
+├── docker-compose.dev.yml
+├── .gitignore
+├── .github/
+    └── workflows/
+        └──docker-build.yml
 └── data/
     ├── tinh_tp.json
     ├── quan-huyen/
@@ -64,25 +71,25 @@ GET /api/wards/{district_code}
 ### Tìm tỉnh/thành phố
 
 ```
-GET /api/search/provinces?q={từ_khóa}
+GET /api/search/provinces?q={keywords}
 ```
 
 ### Tìm quận/huyện
 
 ```
-GET /api/search/districts?q={từ_khóa}
+GET /api/search/districts?q={keywords}
 ```
 
 ### Tìm xã/phường
 
 ```
-GET /api/search/wards?q={từ_khóa}
+GET /api/search/wards?q={keywords}
 ```
 
 ## 📌 Tìm kiếm địa chỉ đầy đủ (tự động ghép tên cấp cha)
 
 ```
-GET /api/search/full-address?q={từ_khóa}
+GET /api/search/full-address?q={keywords}
 ```
 
 ### Ví dụ kết quả:
@@ -109,7 +116,7 @@ GET /api/search/full-address?q={từ_khóa}
 
 ## 📝 Ghi chú
 
-- Dữ liệu được lấy từ repo: [https://github.com/sunrise1002/hanhchinhVN](https://github.com/sunrise1002/hanhchinhVN)
+- Dữ liệu được lấy từ repo: [https://github.com/sunrise1002/hanhchinhVN](https://github.com/sunrise1002/hanhchinhVN) (cập nhất đến 2017)
 - Các mã `code` dùng để phân cấp: mã tỉnh → mã huyện → mã xã
 
 ## 📄 Giấy phép
