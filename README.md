@@ -1,7 +1,6 @@
-# Vietnam Administrative Units API (FastAPI)
+# Vietnam Administrative Units API
 
-API đơn giản để tra cứu đơn vị hành chính Việt Nam (Tỉnh/Thành phố, Quận/Huyện, Xã/Phường) được xây dựng bằng FastAPI, dựa trên dữ liệu JSON từ repo [`sunrise1002/hanhchinhVN`](https://github.com/sunrise1002/hanhchinhVN).
-
+API đơn giản để tra cứu đơn vị hành chính Việt Nam (Tỉnh/Thành phố, Quận/Huyện, Xã/Phường) được xây dựng bằng FastAPI
 ## 📁 Cấu trúc thư mục
 
 ```
