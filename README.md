@@ -1,6 +1,9 @@
 # Vietnam Administrative Units API
 
 API đơn giản để tra cứu đơn vị hành chính Việt Nam (Tỉnh/Thành phố, Quận/Huyện, Xã/Phường) được xây dựng bằng FastAPI
+
+Url test: [ https://api-provinces-vietnam-latest.onrender.com]( https://api-provinces-vietnam-latest.onrender.com)
+
 ## 📁 Cấu trúc thư mục
 
 ```
