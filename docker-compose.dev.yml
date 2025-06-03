@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  vietnam-admin-api-dev:
+  api_provinces_vietnam-dev:
     build: 
       context: .
       dockerfile: Dockerfile

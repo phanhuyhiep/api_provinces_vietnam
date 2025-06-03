@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  vietnam-admin-api:
+  api_provinces_vietnam:
     build: 
       context: .
       dockerfile: Dockerfile
@@ -29,5 +29,5 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./ssl:/etc/nginx/ssl:ro  # SSL certificates
     depends_on:
-      - vietnam-admin-api
+      - api_provinces_vietnam
     restart: unless-stopped
