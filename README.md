@@ -32,7 +32,7 @@ Truy cập docs: [http://localhost:8000/docs](http://localhost:8000/docs)
 ### Bằng Docker
 
 ```bash
-docker build -t api_provinces_vietnam
+docker build -t api_provinces_vietnam .
 docker run -p 8000:8000 api_provinces_vietnam
 ```
 
