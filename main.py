@@ -126,28 +126,33 @@ def search_wards(q: str = Query(..., min_length=2)):
 def search_full_address(q: str = Query(..., min_length=2)):
     q_lower = q.lower()
 
-    # Load toàn bộ dữ liệu
     provinces = load_json_file(DATA_DIR / "tinh_tp.json") or {}
-    provinces_map = {p["code"]: p["name"] for p in provinces.values()}
-    # Tìm trong xã/phường
+    provinces_map = {p["code"]: p for p in provinces.values()}
+
     results = []
+
+    # Tìm trong xã/phường
     wards_dir = DATA_DIR / "xa-phuong"
     for ward_file in wards_dir.glob("*.json"):
         wards = load_json_file(ward_file) or {}
         for w in wards.values():
             if q_lower in w["name"].lower():
                 district_code = w["parent_code"]
-                # Load huyện
                 district_file = DATA_DIR / "quan-huyen" / f"{district_code[:2]}.json"
                 districts = load_json_file(district_file) or {}
                 district = districts.get(district_code)
                 if not district:
                     continue
 
-                province_name = provinces_map.get(district["parent_code"], "Unknown")
+                province = provinces_map.get(district["parent_code"])
 
-                full = f"{w['name']}, {district['name']}, {province_name}"
-                results.append({"level": "ward", "name": w["name"], "full_address": full})
+                full_address = w.get("path_with_type") or f"{w['name']}, {district['name']}, {province['name'] if province else 'Unknown'}"
+
+                results.append({
+                    "level": "ward",
+                    "full_address": full_address,
+                    **w  # include all original fields
+                })
 
     # Tìm trong quận/huyện
     districts_dir = DATA_DIR / "quan-huyen"
@@ -155,14 +160,25 @@ def search_full_address(q: str = Query(..., min_length=2)):
         districts = load_json_file(district_file) or {}
         for d in districts.values():
             if q_lower in d["name"].lower():
-                province_name = provinces_map.get(d["parent_code"], "Unknown")
-                full = f"{d['name']}, {province_name}"
-                results.append({"level": "district", "name": d["name"], "full_address": full})
+                province = provinces_map.get(d["parent_code"])
+                full_address = d.get("path_with_type") or f"{d['name']}, {province['name'] if province else 'Unknown'}"
 
-    # Tìm trong tỉnh
+                results.append({
+                    "level": "district",
+                    "full_address": full_address,
+                    **d
+                })
+
+    # Tìm trong tỉnh/thành phố
     for p in provinces.values():
         if q_lower in p["name"].lower():
-            full = p["name"]
-            results.append({"level": "province", "name": p["name"], "full_address": full})
+            full_address = p.get("path_with_type") or p["name"]
+
+            results.append({
+                "level": "province",
+                "full_address": full_address,
+                **p
+            })
 
     return results
+
