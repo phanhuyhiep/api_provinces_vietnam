@@ -3,6 +3,7 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 import json
 import os
+import uvicorn
 
 app = FastAPI()
 
@@ -16,11 +17,15 @@ app.add_middleware(
 BASE_DIR = Path(__file__).parent.resolve()
 DATA_DIR = BASE_DIR / "data"
 
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 def load_json_file(filepath):
     if not os.path.exists(filepath):
         return None
     with open(filepath, "r", encoding="utf-8") as f:
         return json.load(f)
+    
 # Load tỉnh/thành phố
 @app.get("/api/provinces")
 def get_provinces():
